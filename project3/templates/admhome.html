@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%  static 'css/index.css' %}">
+    <style>
+        .main{
+            display: flex;
+            gap: 10px;
+
+        }
+        .a{
+            width: 300px;
+            background-color:blue;
+            color: white;
+        }
+        .b{
+            width: 300px;
+            background-color:red
+            ;
+            color: white;
+
+        }
+        .c{
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>welcome admin</h1>
+{% for i in users %}
+          {{i.username}}
+    {{i.useremail}}
+    {{i.password}} 
+
+    {% endfor %}
+
+    <div class="main">
+        {% for j in i %}
+        <div class="a">
+            <div class="a1">username: {{i.username}}</div>
+            <div class="a2">useremail : {{i.useremail}}</div>
+            <div class="a3">password :{{i.password}}</div>
+        </div>
+        {%  endfor %}
+        <!-- <div class="b">
+            <div class="a1">username :</div>
+            <div class="a2">useremail :</div>
+            <div class="a3">password :</div>
+        </div>
+        <div class="c">
+            <div class="a1">username :</div>
+            <div class="a2">useremail :</div>
+            <div class="a3">password :</div>
+        </div> -->
+    </div>
+    
+</body>
+</html>
