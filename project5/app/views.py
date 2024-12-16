@@ -3,6 +3,8 @@ from .models import *
 from django.contrib.auth.models import User,auth
 
 # Create your views here.
+adm_username='admin'
+adm_password='admin@123'
 def login(request):
     if request.method=='POST':
         username=request.POST['username']
@@ -35,7 +37,23 @@ def home(request):
 
 def  logout(request):
     if 'auth_user_id' in request.session:
-        del request.session['user']
+        # del request.session['user']
         return redirect(login)
     else:
         return redirect(login)
+
+
+
+
+def adminlogin(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+        if username==adm_username and password==adm_password:
+            print('login')
+            return redirect(adminhome)
+        else:
+            print("Error")
+    return render(request,'adminlogin.html')
+def adminhome(request):
+       return render(request,'adminhome.html') 
