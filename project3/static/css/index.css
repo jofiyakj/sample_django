@@ -1,0 +1,21 @@
+.main{
+    display: flex;
+    gap: 10px;
+
+}
+.a{
+    width: 300px;
+    background-color:blue;
+    color: white;
+}
+.b{
+    width: 300px;
+    background-color: red;
+    color: white;
+
+}
+.c{
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
