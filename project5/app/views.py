@@ -9,24 +9,26 @@ def login(request):
     if request.method=='POST':
         username=request.POST['username']
         password=request.POST['password']
+        print(username,password)
         user=auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request,user)
             return redirect(home)
         else:
             return redirect(login)
-        return render(request,'user/login.html')
+    return render(request,'user/login.html')
     
 def register(request):
     if request.method=='POST':
         name=request.POST['name']
         email=request.POST['email']
-        phone=request.POST['phone']
         username=request.POST['username']
         password=request.POST['password']
-        data=user.objects.create(name=name,email=email,phone=phone,username=username,password=password)
+        data=User.objects.create_user(first_name=name,email=email,username=username,password=password)
         data.save()
+        return redirect(login)
     return render(request,'user/register.html')
+           
 
 def home(request):
     if '_auth_user_id' in request.session:
@@ -49,11 +51,14 @@ def adminlogin(request):
     if request.method=='POST':
         username=request.POST['username']
         password=request.POST['password']
-        if username==adm_username and password==adm_password:
-            print('login')
-            return redirect(adminhome)
+        print(username,password)
+        if username==adm_username and  password==adm_password:
+               print('login')
+               return redirect(adminhome)
         else:
-            print("Error")
-    return render(request,'adminlogin.html')
+                print("Error")
+    return render(request,'admin/adminlogin.html')
 def adminhome(request):
-       return render(request,'adminhome.html') 
+         user=User.objects.filter(username__startswith='a') 
+         print(user)
+         return render(request,'admin/adminhome.html',{'user':user}) 

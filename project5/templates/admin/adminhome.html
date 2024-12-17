@@ -8,5 +8,10 @@
 <body>
     
     <h1>Welcome to Admin Homepage</h1>
+    {% for i in user %}
+    <p>Username : {{i.username}}</p>
+    <p>Password : {{i.password}}</p>
+    {% endfor %}
+
 </body>
 </html>
