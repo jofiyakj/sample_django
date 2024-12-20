@@ -47,13 +47,20 @@ def login(request):
         username=request.POST['username']
         password=request.POST['password']
         # print(username,password)
-        user=auth.authenticate(username=username,password=password)
-        print(user)
-        if user:
-            print(user)
-            auth.login(request,user)
+        data=employee.objects.all()
+        for i in data:
+            if i.username==username and i.password==password:
+                print(i)
+                request.session['userlog']=i.username
             return redirect(home)
     return render(request,'user/login.html')
+    #     user=auth.authenticate(username=username,password=password)
+    #     print(user)
+    #     if user:
+    #         print(user)
+    #         auth.login(request,user)
+    #     return redirect(home)
+    # return render(request,'user/login.html')
 
 
 def home(request):
@@ -62,6 +69,15 @@ def home(request):
     else:
         return redirect(login)
     
+def update(request):
+       if request.method=='POST':
+          name=request.POST['name']
+          email=request.POST['email']
+          data=employee.objects.filter(username=request.session['userlog'])
+          return render(request,'update.html',{'emps':emps})
+       else:
+           return redirect(login)
+
     
 def logout(request):
     if '_auth_user_id' in request.session:
