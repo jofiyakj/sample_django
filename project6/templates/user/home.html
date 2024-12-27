@@ -8,7 +8,18 @@
 <body>
     
     <h1>Welcome to Home page</h1>
+    {% for i in emps %}
+    <div>
+        {{i.name}}
+        {{i.email}}
+        {{i.dname}}
+    </div>
+    {% endfor %}
+    <a href="../update">update</a><br><br>
     <a href="../logout">logout</a>
+</body>
+</html>
+ 
     
 </body>
 </html>

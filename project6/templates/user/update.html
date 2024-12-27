@@ -6,15 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../"></form>
+    <form action="../update" method="POST">
         {% csrf_token %}
-    <h1>Update</h1>
-    name  <input type="text" name="name" id=""><br><br>
-    email <input type="text" name="email" id=""><br><br>
-    <button value="submit">Update</button>
-    {% for i in emps %}
-    <p>name : {{i.name}}</p>
-    <p>email : {{i.email}}</p>                                                    
-    {% endfor %}
+        <input type="text" name="name" id="" value="{{emps.name}}" placeholder="Enter your content">
+        <input type="text" name="email" id="" value="{{emps.email}}" placeholder="Enter your content">
+        <button type="submit">update</button>
+    </form>
 </body>
 </html>
