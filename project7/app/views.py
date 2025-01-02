@@ -15,10 +15,14 @@ def model_form_dis(request):
         return redirect(model_form_dis)
     return render(request,'teachers.html',{'data':data})
 def upload(request):
+    datas=UserUpload.objects.all()
+    print(datas)
     if request.method=='POST':
-        file=request.POST['data']
-        UserUpload.objects.create(document=file)
-    return render(request,'upload.html')
+         file=request.FILES['data']
+         data=UserUpload.objects.create(document=file)
+         data.save()
+         return redirect(upload)
+    return render(request,'upload.html',{'data':datas})
 
 
 

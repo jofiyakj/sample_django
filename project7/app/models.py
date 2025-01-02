@@ -10,5 +10,3 @@ class UserUpload(models.Model):
     document = models.FileField()
     
 
-    def __str__(self):
-        return self.title
